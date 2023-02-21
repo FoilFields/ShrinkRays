@@ -2,21 +2,13 @@ package foilfields.shrinkrays.blocks;
 
 import foilfields.shrinkrays.ShrinkRays;
 import foilfields.shrinkrays.blockentity.BeamCasterBlockEntity;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.VibrationParticleEffect;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -24,11 +16,10 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.*;
-import net.minecraft.world.Vibration;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Random;
 
 public abstract class AbstractBeamCaster extends BlockWithEntity implements BlockEntityProvider {
@@ -76,7 +67,7 @@ public abstract class AbstractBeamCaster extends BlockWithEntity implements Bloc
         boolean powered = state.get(POWERED);
         if (powered != world.isReceivingRedstonePower(pos)) {
             if (powered) {
-                world.createAndScheduleBlockTick(pos, this, 4);
+                world.getBlockTickScheduler().scheduleTick(OrderedTick.create(this, pos));
             } else {
                 world.setBlockState(pos, state.cycle(POWERED), Block.NOTIFY_LISTENERS);
             }
@@ -86,7 +77,7 @@ public abstract class AbstractBeamCaster extends BlockWithEntity implements Bloc
     public abstract void onHitEntity(Entity entity);
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         if (state.get(POWERED) && !world.isReceivingRedstonePower(pos)) {
             world.setBlockState(pos, state.cycle(POWERED), Block.NOTIFY_LISTENERS);
         }
