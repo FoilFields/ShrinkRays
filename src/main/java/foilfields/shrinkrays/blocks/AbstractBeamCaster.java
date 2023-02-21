@@ -2,21 +2,13 @@ package foilfields.shrinkrays.blocks;
 
 import foilfields.shrinkrays.ShrinkRays;
 import foilfields.shrinkrays.blockentity.BeamCasterBlockEntity;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.event.world.WorldTickCallback;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.VibrationParticleEffect;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -24,12 +16,8 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.*;
-import net.minecraft.world.Vibration;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-import java.util.Random;
 
 public abstract class AbstractBeamCaster extends BlockWithEntity implements BlockEntityProvider {
     public static final BooleanProperty POWERED = Properties.POWERED;
@@ -86,33 +74,11 @@ public abstract class AbstractBeamCaster extends BlockWithEntity implements Bloc
     public abstract void onHitEntity(Entity entity);
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         if (state.get(POWERED) && !world.isReceivingRedstonePower(pos)) {
             world.setBlockState(pos, state.cycle(POWERED), Block.NOTIFY_LISTENERS);
         }
     }
-
-//    public void onTick(World world, BlockPos pos, BlockState state) {
-//        if (!state.isOf(this) || !state.get(POWERED)) return;
-//        Direction direction = state.get(FACING);
-//
-//        Box area = new Box(pos.add(direction.getVector()), pos.add(direction.getVector().add(1,1,1)));
-//
-//        Vec3d center = area.getCenter();
-//
-//        if (Math.random() < 0.2f) world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_STEP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-//
-//        if (!world.isClient()) {
-//            ((ServerWorld) world).spawnParticles(ParticleTypes.POOF, center.getX(), center.getY(), center.getZ(), 1, 0.25, 0.25, 0.25, 0);
-//        }
-//
-//        List<Entity> entities = world.getOtherEntities(null, area);
-//
-//        entities.forEach(entity -> {
-//            if (Math.random() < 0.2f) world.playSound(null, pos, SoundEvents.ENTITY_SLIME_SQUISH, SoundCategory.BLOCKS, 1.0f, 1.0f);
-//            onHitEntity(entity);
-//        });
-//    }
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
