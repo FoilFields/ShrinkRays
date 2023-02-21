@@ -1,0 +1,6 @@
+{
+  "itemGroup.shrink_rays.shrink_rays": "Shrink Rays",
+  "block.shrink_rays.shrink_ray": "Shrink Ray",
+  "block.shrink_rays.growth_ray": "Growth Ray",
+  "block.shrink_rays.return_ray": "Return Ray"
+}

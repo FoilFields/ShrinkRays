@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "shrink_rays:block/return_ray_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "shrink_rays:block/return_ray",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "shrink_rays:block/return_ray"
+    },
+    "facing=south": {
+      "model": "shrink_rays:block/return_ray",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "shrink_rays:block/return_ray_vertical"
+    },
+    "facing=west": {
+      "model": "shrink_rays:block/return_ray",
+      "y": 270
+    }
+  }
+}

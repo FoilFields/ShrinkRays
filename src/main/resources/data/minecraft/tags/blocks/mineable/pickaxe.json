@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "values": [
+        "shrink_rays:shrink_ray",
+        "shrink_rays:return_ray",
+        "shrink_rays:growth_ray"
+    ]
+}
