@@ -1,0 +1,6 @@
+{
+  "itemGroup.shrink_rays.shrink_rays": "Shrink Rays",
+  "block.shrink_rays.shrink_ray": "Луч сжатия",
+  "block.shrink_rays.growth_ray": "Луч роста",
+  "block.shrink_rays.return_ray": "Луч возврата"
+}
