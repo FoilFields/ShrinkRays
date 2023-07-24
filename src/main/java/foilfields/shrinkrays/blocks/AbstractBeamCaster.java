@@ -17,10 +17,7 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
-import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public abstract class AbstractBeamCaster extends BlockWithEntity implements BlockEntityProvider {
     public static final BooleanProperty POWERED = Properties.POWERED;
