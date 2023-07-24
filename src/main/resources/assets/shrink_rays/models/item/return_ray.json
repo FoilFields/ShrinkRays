@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "shrink_rays:item/return_ray"
-  }
+  "parent": "shrink_rays:block/return_ray"
 }

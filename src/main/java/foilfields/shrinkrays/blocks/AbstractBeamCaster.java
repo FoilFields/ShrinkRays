@@ -82,28 +82,6 @@ public abstract class AbstractBeamCaster extends BlockWithEntity implements Bloc
         }
     }
 
-//    public void onTick(World world, BlockPos pos, BlockState state) {
-//        if (!state.isOf(this) || !state.get(POWERED)) return;
-//        Direction direction = state.get(FACING);
-//
-//        Box area = new Box(pos.add(direction.getVector()), pos.add(direction.getVector().add(1,1,1)));
-//
-//        Vec3d center = area.getCenter();
-//
-//        if (Math.random() < 0.2f) world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_STEP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-//
-//        if (!world.isClient()) {
-//            ((ServerWorld) world).spawnParticles(ParticleTypes.POOF, center.getX(), center.getY(), center.getZ(), 1, 0.25, 0.25, 0.25, 0);
-//        }
-//
-//        List<Entity> entities = world.getOtherEntities(null, area);
-//
-//        entities.forEach(entity -> {
-//            if (Math.random() < 0.2f) world.playSound(null, pos, SoundEvents.ENTITY_SLIME_SQUISH, SoundCategory.BLOCKS, 1.0f, 1.0f);
-//            onHitEntity(entity);
-//        });
-//    }
-
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
