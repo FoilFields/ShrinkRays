@@ -1,7 +1,6 @@
 package foilfields.shrinkrays.client;
 
 import foilfields.shrinkrays.ShrinkRays;
-import foilfields.shrinkrays.blocks.ShrinkRay;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

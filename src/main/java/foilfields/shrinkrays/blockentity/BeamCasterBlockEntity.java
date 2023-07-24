@@ -4,7 +4,6 @@ import foilfields.shrinkrays.ShrinkRays;
 import foilfields.shrinkrays.blocks.AbstractBeamCaster;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;

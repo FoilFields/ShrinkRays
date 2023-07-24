@@ -17,6 +17,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ShrinkRays implements ModInitializer {
@@ -24,16 +27,21 @@ public class ShrinkRays implements ModInitializer {
     public static final ReturnRay RETURN_RAY = new ReturnRay(FabricBlockSettings.copyOf(Blocks.DISPENSER));
     public static final GrowthRay GROWTH_RAY = new GrowthRay(FabricBlockSettings.copyOf(Blocks.DISPENSER));
 
+    public static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, GetIdentifier("shrink_rays_group"));
+
     public static final BlockEntityType<BeamCasterBlockEntity> BEAM_CASTER_BLOCK_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             GetIdentifier("beam_caster_block_entity"),
             FabricBlockEntityTypeBuilder.create(BeamCasterBlockEntity::new, GROWTH_RAY, SHRINK_RAY, RETURN_RAY).build()
     );
 
-    private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(GetIdentifier("shrink_rays")).icon(() -> new ItemStack(SHRINK_RAY)).build();
-
     @Override
     public void onInitialize() {
+        Registry.register(Registries.ITEM_GROUP, ITEM_GROUP, FabricItemGroup.builder()
+                .displayName(Text.translatable("itemGroup.shrink_rays.shrink_rays"))
+                .icon(() -> new ItemStack(SHRINK_RAY))
+                .build());
+
         Registry.register(Registries.BLOCK, GetIdentifier("shrink_ray"), SHRINK_RAY);
         Registry.register(Registries.BLOCK, GetIdentifier("return_ray"), RETURN_RAY);
         Registry.register(Registries.BLOCK, GetIdentifier("growth_ray"), GROWTH_RAY);
@@ -41,11 +49,11 @@ public class ShrinkRays implements ModInitializer {
         Registry.register(Registries.ITEM, GetIdentifier("return_ray"), new BlockItem(RETURN_RAY, new FabricItemSettings()));
         Registry.register(Registries.ITEM, GetIdentifier("growth_ray"), new BlockItem(GROWTH_RAY, new FabricItemSettings()));
 
-        ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP).register(content -> {
-            content.add(SHRINK_RAY);
-            content.add(RETURN_RAY);
-            content.add(GROWTH_RAY);
-        });
+            ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP).register((entries -> {
+                entries.add(SHRINK_RAY);
+                entries.add(GROWTH_RAY);
+                entries.add(RETURN_RAY);
+            }));
     }
 
     public static Identifier GetIdentifier(String name) {

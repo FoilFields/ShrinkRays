@@ -59,18 +59,17 @@ public abstract class AbstractBeamCaster extends BlockWithEntity implements Bloc
     }
 
     @Override
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        if (world.isClient) {
-            return;
-        }
-
-        boolean powered = state.get(POWERED);
-        if (powered != world.isReceivingRedstonePower(pos)) {
-            if (powered) {
-                world.getBlockTickScheduler().scheduleTick(OrderedTick.create(this, pos));
-            } else {
-                world.setBlockState(pos, state.cycle(POWERED), Block.NOTIFY_LISTENERS);
+    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+        if (!world.isClient) {
+            boolean bl = (Boolean)state.get(POWERED);
+            if (bl != world.isReceivingRedstonePower(pos)) {
+                if (bl) {
+                    world.scheduleBlockTick(pos, this, 4);
+                } else {
+                    world.setBlockState(pos, (BlockState)state.cycle(POWERED), 2);
+                }
             }
+
         }
     }
 
