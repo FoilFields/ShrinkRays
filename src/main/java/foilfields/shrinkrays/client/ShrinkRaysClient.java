@@ -11,6 +11,7 @@ import net.minecraft.client.render.RenderLayer;
 public class ShrinkRaysClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        // Set the render layer for each ray block to translucent.
         BlockRenderLayerMap.INSTANCE.putBlock(ShrinkRays.SHRINK_RAY, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ShrinkRays.GROWTH_RAY, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ShrinkRays.RETURN_RAY, RenderLayer.getTranslucent());

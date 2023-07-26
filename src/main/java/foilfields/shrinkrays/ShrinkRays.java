@@ -22,6 +22,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+/**
+ * The main mod initializer for ShrinkRays.
+ */
 public class ShrinkRays implements ModInitializer {
     public static final ShrinkRay SHRINK_RAY = new ShrinkRay(FabricBlockSettings.copyOf(Blocks.DISPENSER));
     public static final ReturnRay RETURN_RAY = new ReturnRay(FabricBlockSettings.copyOf(Blocks.DISPENSER));
@@ -49,13 +52,19 @@ public class ShrinkRays implements ModInitializer {
         Registry.register(Registries.ITEM, GetIdentifier("return_ray"), new BlockItem(RETURN_RAY, new FabricItemSettings()));
         Registry.register(Registries.ITEM, GetIdentifier("growth_ray"), new BlockItem(GROWTH_RAY, new FabricItemSettings()));
 
-            ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP).register((entries -> {
-                entries.add(SHRINK_RAY);
-                entries.add(GROWTH_RAY);
-                entries.add(RETURN_RAY);
-            }));
+        ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP).register((entries -> {
+            entries.add(SHRINK_RAY);
+            entries.add(GROWTH_RAY);
+            entries.add(RETURN_RAY);
+        }));
     }
 
+    /**
+     * Helper method to get a namespaced Identifier for the given name.
+     *
+     * @param name The name of the Identifier.
+     * @return A namespaced Identifier with the mod's namespace and the given name.
+     */
     public static Identifier GetIdentifier(String name) {
         return new Identifier("shrink_rays", name);
     }
