@@ -2,5 +2,8 @@
   "itemGroup.shrink_rays.shrink_rays": "Shrink Rays",
   "block.shrink_rays.shrink_ray": "Shrink Ray",
   "block.shrink_rays.growth_ray": "Growth Ray",
-  "block.shrink_rays.return_ray": "Return Ray"
+  "block.shrink_rays.return_ray": "Return Ray",
+  "subtitles.shrink_rays.idle": "Idle Ray",
+  "subtitles.shrink_rays.shrink": "Shrink Ray",
+  "subtitles.shrink_rays.grow": "Growth Ray"
 }

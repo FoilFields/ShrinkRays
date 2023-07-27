@@ -1,0 +1,20 @@
+{
+  "shrink": {
+    "subtitle": "subtitles.shrink_rays.shrink",
+    "sounds": [
+      "shrink_rays:shrink"
+    ]
+  },
+  "grow": {
+    "subtitle": "subtitles.shrink_rays.grow",
+    "sounds": [
+      "shrink_rays:grow"
+    ]
+  },
+  "idle": {
+    "subtitle": "subtitles.shrink_rays.idle",
+    "sounds": [
+      "shrink_rays:idle"
+    ]
+  }
+}

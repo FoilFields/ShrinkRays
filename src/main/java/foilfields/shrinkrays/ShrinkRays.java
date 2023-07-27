@@ -19,6 +19,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -32,6 +33,13 @@ public class ShrinkRays implements ModInitializer {
 
     public static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, GetIdentifier("shrink_rays_group"));
 
+    public static Identifier SHRINK_SOUND_ID = GetIdentifier("shrink");
+    public static SoundEvent SHRINK_SOUND_EVENT = SoundEvent.of(SHRINK_SOUND_ID);
+    public static Identifier GROW_SOUND_ID = GetIdentifier("grow");
+    public static SoundEvent GROW_SOUND_EVENT = SoundEvent.of(GROW_SOUND_ID);
+    public static Identifier IDLE_SOUND_ID = GetIdentifier("idle");
+    public static SoundEvent IDLE_SOUND_EVENT = SoundEvent.of(IDLE_SOUND_ID);
+
     public static final BlockEntityType<BeamCasterBlockEntity> BEAM_CASTER_BLOCK_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             GetIdentifier("beam_caster_block_entity"),
@@ -44,6 +52,10 @@ public class ShrinkRays implements ModInitializer {
                 .displayName(Text.translatable("itemGroup.shrink_rays.shrink_rays"))
                 .icon(() -> new ItemStack(SHRINK_RAY))
                 .build());
+
+        Registry.register(Registries.SOUND_EVENT, SHRINK_SOUND_ID, SHRINK_SOUND_EVENT);
+        Registry.register(Registries.SOUND_EVENT, GROW_SOUND_ID, GROW_SOUND_EVENT);
+        Registry.register(Registries.SOUND_EVENT, IDLE_SOUND_ID, IDLE_SOUND_EVENT);
 
         Registry.register(Registries.BLOCK, GetIdentifier("shrink_ray"), SHRINK_RAY);
         Registry.register(Registries.BLOCK, GetIdentifier("return_ray"), RETURN_RAY);

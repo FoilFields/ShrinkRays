@@ -8,7 +8,10 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -17,6 +20,7 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,6 +30,9 @@ import org.jetbrains.annotations.Nullable;
 public abstract class AbstractBeamCaster extends BlockWithEntity implements BlockEntityProvider {
     public static final BooleanProperty POWERED = Properties.POWERED;
     public static final DirectionProperty FACING = FacingBlock.FACING;
+    private static final int TICK_DELAY = 5;
+
+    private int tickCounter = 0;
 
     /**
      * Creates a new AbstractBeamCaster instance.
@@ -165,5 +172,24 @@ public abstract class AbstractBeamCaster extends BlockWithEntity implements Bloc
      *
      * @param entity The entity hit by the beam.
      */
-    public abstract void onHitEntity(Entity entity);
+    public abstract void onHitEntity(World world, BlockPos position, Entity entity, Vec3d center);
+
+    public void tickCounter() {
+        tickCounter++;
+    }
+
+    public void playSound(SoundEvent sound, World world, BlockPos pos) {
+        if (tickCounter >= TICK_DELAY) {
+            world.playSound(null, pos, sound, SoundCategory.BLOCKS, 0.1f, 1.0f);
+            tickCounter = 0;
+        }
+    }
+
+    public void idleEffect(World world, BlockPos position, Vec3d center) {
+        playSound(ShrinkRays.IDLE_SOUND_EVENT, world, position);
+
+        if (!world.isClient()) {
+            ((ServerWorld) world).spawnParticles(ParticleTypes.SMOKE, center.getX(), center.getY(), center.getZ(), 1, 0.25, 0.25, 0.25, 0);
+        }
+    }
 }
