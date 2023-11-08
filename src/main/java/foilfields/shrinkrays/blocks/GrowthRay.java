@@ -46,3 +46,4 @@ public class GrowthRay extends AbstractBeamCaster {
         scaleData.setScale(Math.min(scaleData.getScale() + 0.003f, 3));
     }
 }
+

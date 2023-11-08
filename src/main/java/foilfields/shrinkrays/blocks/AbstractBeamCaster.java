@@ -71,6 +71,11 @@ public abstract class AbstractBeamCaster extends BlockWithEntity implements Bloc
         return checkType(type, ShrinkRays.BEAM_CASTER_BLOCK_ENTITY, BeamCasterBlockEntity::tick);
     }
 
+    @Nullable
+    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+        return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
+    }
+
     /**
      * Gets the render type for this block.
      *
