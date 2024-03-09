@@ -18,19 +18,19 @@ public class ShrinkRay extends AbstractBeamCaster {
 
     @Override
     public void onHitEntity(World world, BlockPos position, Entity entity, Vec3d center) {
+        if (world.isClient()) return;
+
         ScaleData scaleData = ScaleData.Builder.create().entity(entity).type(ScaleTypes.BASE).build();
 
-        if (scaleData.getScale() <= 0.051) {
+        if (scaleData.getScale() <= ShrinkRays.CONFIG.minScale()) {
             idleEffect(world, position, center);
             return;
         }
 
-        if (!world.isClient()) {
-            DustColorTransitionParticleEffect particleEffect = new DustColorTransitionParticleEffect(new Vector3f(0.44f,0.91f,1.00f), new Vector3f(0.74f,0.95f,1.00f), 1);
-            ((ServerWorld) world).spawnParticles(particleEffect, center.getX(), center.getY(), center.getZ(), 1, 0.25, 0.25, 0.25, 0);
-        }
+        DustColorTransitionParticleEffect particleEffect = new DustColorTransitionParticleEffect(new Vector3f(0.44f,0.91f,1.00f), new Vector3f(0.74f,0.95f,1.00f), 1);
+        ((ServerWorld) world).spawnParticles(particleEffect, center.getX(), center.getY(), center.getZ(), 1, 0.25, 0.25, 0.25, 0);
 
         playSound(ShrinkRays.SHRINK_SOUND_EVENT, world, position);
-        scaleData.setScale(Math.max(scaleData.getScale() - 0.003f, 0.05f));
+        scaleData.setScale(Math.max(scaleData.getScale() / ShrinkRays.CONFIG.shrinkSpeed(), ShrinkRays.CONFIG.minScale()));
     }
 }

@@ -5,5 +5,12 @@
   "block.shrink_rays.return_ray": "Return Ray",
   "subtitles.shrink_rays.idle": "Idle Ray",
   "subtitles.shrink_rays.shrink": "Shrink Ray",
-  "subtitles.shrink_rays.grow": "Growth Ray"
+  "subtitles.shrink_rays.grow": "Growth Ray",
+  "text.config.shrink_rays.option.minScale": "The smallest scale an entity can grow to\nscale of 0.0625 means 2 blocks translate to 2 pixels",
+  "text.config.shrink_rays.option.maxScale": "The largest scale an entity can shrink to\nscale of 3 means 2 blocks translate to 6 blocks",
+  "text.config.shrink_rays.option.growthSpeed": "How fast entities grow",
+  "text.config.shrink_rays.option.returnSpeed": "How fast entities return to normal",
+  "text.config.shrink_rays.option.shrinkSpeed": "How fast entities shrink",
+  "text.config.shrink_rays.section.scale": "Clamps",
+  "text.config.shrink_rays.section.speed": "Speeds"
 }

@@ -27,6 +27,7 @@ import net.minecraft.util.Identifier;
  * The main mod initializer for ShrinkRays.
  */
 public class ShrinkRays implements ModInitializer {
+    public static final foilfields.shrinkrays.ShrinkRaysConfig CONFIG = foilfields.shrinkrays.ShrinkRaysConfig.createAndLoad();
     public static final ShrinkRay SHRINK_RAY = new ShrinkRay(FabricBlockSettings.copyOf(Blocks.DISPENSER));
     public static final ReturnRay RETURN_RAY = new ReturnRay(FabricBlockSettings.copyOf(Blocks.DISPENSER));
     public static final GrowthRay GROWTH_RAY = new GrowthRay(FabricBlockSettings.copyOf(Blocks.DISPENSER));
