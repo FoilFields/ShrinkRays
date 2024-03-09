@@ -1,6 +1,8 @@
 package foilfields.shrinkrays.blocks;
 
+import com.mojang.serialization.MapCodec;
 import foilfields.shrinkrays.ShrinkRays;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.particle.DustColorTransitionParticleEffect;
 import net.minecraft.server.world.ServerWorld;
@@ -14,6 +16,11 @@ import virtuoel.pehkui.api.ScaleTypes;
 public class ShrinkRay extends AbstractBeamCaster {
     public ShrinkRay(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return null;
     }
 
     @Override

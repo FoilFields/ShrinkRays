@@ -40,7 +40,9 @@ public class BeamCasterBlockEntity extends BlockEntity {
             return;
 
         Direction direction = state.get(AbstractBeamCaster.FACING);
-        Box area = new Box(position.add(direction.getVector()), position.add(direction.getVector().add(1, 1, 1)));
+
+        Vec3d center = position.add(direction.getVector()).toCenterPos();
+        Box area = new Box(center.add(-0.5, -0.5, -0.5), center.add(0.5, 0.5, 0.5));
         AbstractBeamCaster caster = ((AbstractBeamCaster) state.getBlock());
 
         caster.tickCounter();
