@@ -12,5 +12,6 @@
   "text.config.shrink_rays.option.returnSpeed": "How fast entities return to normal",
   "text.config.shrink_rays.option.shrinkSpeed": "How fast entities shrink",
   "text.config.shrink_rays.section.scale": "Clamps",
-  "text.config.shrink_rays.section.speed": "Speeds"
+  "text.config.shrink_rays.section.speed": "Speeds",
+  "text.config.shrink_rays.title": "ShrinkRays Epic Config"
 }
