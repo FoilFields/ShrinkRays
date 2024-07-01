@@ -79,6 +79,6 @@ public class ShrinkRays implements ModInitializer {
      * @return A namespaced Identifier with the mod's namespace and the given name.
      */
     public static Identifier GetIdentifier(String name) {
-        return new Identifier("shrink_rays", name);
+        return Identifier.of("shrink_rays", name);
     }
 }
