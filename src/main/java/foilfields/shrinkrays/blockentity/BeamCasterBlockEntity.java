@@ -48,7 +48,7 @@ public class BeamCasterBlockEntity extends BlockEntity {
         caster.tickCounter();
 
         List<Entity> entities = world.getOtherEntities(null, area);
-        if (entities.size() == 0) caster.idleEffect(world, position, area.getCenter());
+        if (entities.isEmpty()) caster.idleEffect(world, position, area.getCenter());
 
         entities.forEach(entity -> caster.onHitEntity(world, position, entity, area.getCenter()));
     }

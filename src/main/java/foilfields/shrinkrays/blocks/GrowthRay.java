@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import foilfields.shrinkrays.ShrinkRays;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.particle.*;
+import net.minecraft.particle.DustColorTransitionParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;

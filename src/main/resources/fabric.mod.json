@@ -3,14 +3,12 @@
   "id": "shrink_rays",
   "version": "${version}",
   "name": "ShrinkRays",
-  "description": "Shrink and grow entities with this awesome mod!",
-  "authors": [
-    "Woukie"
-  ],
+  "description": "",
+  "authors": [],
   "contact": {
-    "website": "foilfields.com"
+    "repo": "https://github.com/lucas/ShrinkRays"
   },
-  "license": "MIT",
+  "license": "All-Rights-Reserved",
   "icon": "assets/shrink_rays/textures/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -21,12 +19,9 @@
       "foilfields.shrinkrays.ShrinkRays"
     ]
   },
-  "mixins": [
-    "ShrinkRays.mixins.json"
-  ],
   "depends": {
-    "fabricloader": ">=0.15.7",
+    "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "~1.20.4"
+    "minecraft": "${minecraft_version}"
   }
 }
